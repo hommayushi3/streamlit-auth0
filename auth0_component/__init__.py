@@ -31,7 +31,7 @@ def getVerifiedSubFromToken(token, domain, audience, unsafe_url_flag=False):
     unverified_header = jwt.get_unverified_header(token)
     rsa_key = {}
     for key in jwks["keys"]:
-        if key["kid"] == unverified_header["kid"]:
+        if key["kid"] == unverified_header.get("kid", None):
             rsa_key = {
                 "kty": key["kty"],
                 "kid": key["kid"],
